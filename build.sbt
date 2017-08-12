@@ -1,6 +1,6 @@
-name := "Programming in Scala"
+name := "Programming-in-Scala"
 
-version := "1.0"
+version := "0.1"
 
 scalaVersion := "2.12.3"
         
