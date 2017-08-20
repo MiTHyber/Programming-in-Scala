@@ -7,7 +7,7 @@ s indexOf 'o'
 
 s indexOf ('o', 5)
 
-// scala have infix (two operands) and prefix/postfix (unary)
+// scala has infix (two operands) and prefix/postfix (unary)
 -2.0
 (2.0).unary_-
 
