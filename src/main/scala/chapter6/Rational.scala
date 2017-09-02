@@ -16,20 +16,41 @@ class Rational(n: Int, d: Int) {
 //  auxiliary constructor
   def this(n: Int) = this(n, 1)
 
-  override def toString: String = numer + "/" + denom
-
   def + (that: Rational): Rational =
     new Rational(
       numer * that.denom + that.numer * denom,
       denom * that.denom
     )
 
+  def + (i: Int): Rational =
+    new Rational(numer + i * denom, denom)
+
+  def - (that: Rational): Rational =
+    new Rational(
+      numer * that.denom - that.numer * denom,
+      denom * that.denom
+    )
+
+  def - (i: Int): Rational =
+    new Rational(numer - i * denom, denom)
+
   def * (that: Rational): Rational =
     new Rational(numer * that.numer, denom * that.denom)
+
+  def * (i: Int) : Rational =
+    new Rational(numer * i, denom)
+
+  def / (that: Rational): Rational =
+    new Rational(numer * that.denom, denom * that.numer)
+
+  def / (i: Int) : Rational =
+    new Rational(numer, denom * i)
 
   def lessThan(that: Rational) = this.numer * that.denom < that.numer * this.denom
 
   def max(that: Rational) = if (this.lessThan(that)) that else this
+
+  override def toString: String = numer + "/" + denom
 
   private def gcd(a: Int, b: Int): Int = if (b == 0) a else gcd(b, a % b)
 }
@@ -49,4 +70,12 @@ object Main extends App {
   println(oneHalf + oneHalf * twoThirds)
   println((oneHalf + oneHalf) * twoThirds)
   println(oneHalf + (oneHalf * twoThirds))
+  println(twoThirds * twoThirds)
+  println(twoThirds * 2)
+//  int doesn't know about Rational class
+//  2 * twoThirds
+
+//  it works after we introduce an implicit conversion
+  implicit def intToRational(x: Int) = new Rational(x)
+  2 * twoThirds
 }
